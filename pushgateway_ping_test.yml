@@ -1,0 +1,16 @@
+[
+  {
+    "targets": [ "localhost:8080"],
+    "labels": {
+      "env": "localhost",
+      "job": "cadvisor"
+    }
+  },
+  {
+    "targets": [ "localhost:9104" ],
+    "labels": {
+      "env": "prod",
+      "job": "mysqld"
+    }
+  }
+]
