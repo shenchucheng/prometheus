@@ -358,23 +358,10 @@ def check_configs_type(configs, checks):
             sys.exit(-1)
 
 def main():
-    client = BaseClient()
-    def test():
-        loop = asyncio.get_event_loop()
-        tasks = [
-            client.task( 
-                "http://localhost:9100/metrics", 
-                "http://monitor.api.test.metadl.com/metrics/job/python_test/instance/localhost:9100/status/fail"
-            ),
-            client.task(
-                "http://localhost:9090/metrics",
-                "http://monitor.api.test.metadl.com/metrics/job/python_test/instance/localhost:9090/status/ok"
-            ) 
-        ]
-        task =  asyncio.wait(tasks, timeout=10)
-        ret = loop.run_until_complete(task)
-        return ret
-    return test()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(load_config('./pushgateway/test.yml') )    
+    loop.run_forever()
+    
 
 if __name__ == "__main__":
     main()
